@@ -1,0 +1,3 @@
+# Moroccan Bank Reviews
+
+This project aims to collect and analyze customer reviews for Moroccan banks. The goal is to build a data mining and data warehousing platform that facilitates the collection, cleaning, and analysis of customer feedback data. The platform will enable banks in Morocco to gain valuable insights from customer reviews, identify areas for improvement, and make data-driven decisions to enhance customer satisfaction
