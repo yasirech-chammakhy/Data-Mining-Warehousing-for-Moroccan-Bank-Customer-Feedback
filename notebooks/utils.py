@@ -1,4 +1,7 @@
 import re
+import numpy as np
+import translators as ts
+
 
 def map_labels(labels):
     ''' This function takes a list of bank labels and returns a dictionary of bank groups
@@ -60,3 +63,25 @@ def map_labels(labels):
         else:
             bank_dict[label] = 'unknown'
     return bank_dict
+
+
+def translate(ser, translator='google'):
+    """
+    Translates a pandas series of text using the specified translator.
+
+    Args:
+        ser (pandas.Series): The series containing the text to be translated.
+        translator (str, optional): The translator service to be used (default is 'google').
+
+    Returns:
+        pandas.Series: The translated series.
+
+    """
+    trans_ser = []
+    for idx, text in enumerate(ser):
+        try:
+            trans_text = ts.translate_text(text, translator=translator, from_language='fr', to_language='en')
+            trans_ser.append(trans_text)
+        except:
+            trans_ser.append(np.nan)
+    return trans_ser
