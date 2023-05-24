@@ -1,6 +1,13 @@
 import re
 import numpy as np
 import translators as ts
+import re
+import nltk
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
+nltk.download('omw-1.4', quiet=True)
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 
 
 def map_labels(labels):
@@ -85,3 +92,36 @@ def translate(ser, translator='google'):
         except:
             trans_ser.append(np.nan)
     return trans_ser
+
+
+def clean_review(text):
+    """Cleans the input text by removing special characters, numericals, converting to lowercase,
+    tokenizing, removing stopwords, and lemmatizing the words.
+    
+    Args:
+        text (str): The input text to be cleaned.
+        
+    Returns:
+        str: The cleaned text.
+    """
+    # Removes all special characters and numericals leaving the alphabets
+    text = re.sub('[^A-Za-z]+', ' ', str(text))
+    
+    # Convert all characters to lowercase
+    text = text.lower()
+    
+    # Tokenize each review
+    tokens = nltk.word_tokenize(text)
+    
+    # Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    tokens = [token for token in tokens if token not in stop_words]
+    
+    # Lemmatize each word in each review
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(token) for token in tokens]
+    
+    # Combine the cleaned tokens back into a string
+    cleaned_text = ' '.join(tokens)
+    
+    return cleaned_text
