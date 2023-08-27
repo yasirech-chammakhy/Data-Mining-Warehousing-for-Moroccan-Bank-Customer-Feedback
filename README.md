@@ -13,3 +13,6 @@ This project aims to collect and analyze customer reviews for Moroccan banks. Th
 - <p><b>BERT Model </b>: Utilizes a pre-trained BERT model for sentiment analysis, enabling accurate sentiment scoring of customer reviews.
 - <p><b>Sentiment Categories </b>: Categorizes sentiment scores into positive, negative, and neutral categories for enhanced interpretation.
 - <p><b>Insights </b>: Provides insights into overall sentiment distribution, sentiment trends over time, and bank-specific sentiment variations.
+
+## Dashboard
+![Project Screenshot](dash.png)
